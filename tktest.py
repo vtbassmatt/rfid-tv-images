@@ -1,4 +1,5 @@
 import math
+import os
 import random
 from tkinter import Tk, ttk
 
@@ -10,11 +11,9 @@ BUTTON_PADDING = -2 # whatever it takes to totally remove padding
 
 WORK_DELAY_MS = 200 # how many milliseconds to wait to perform next work
 
-IMAGES = [
-    'assets/microscope.webp',
-    'assets/orrery.jpeg',
-    'assets/test_tube.webp',
-]
+BASE_DIR = os.path.dirname(__file__)
+ASSET_DIR = f'{BASE_DIR}/assets/'
+IMAGES = [f"{ASSET_DIR}{filename}" for filename in os.listdir(ASSET_DIR)]
 
 
 def get_window_size(root: Tk):
