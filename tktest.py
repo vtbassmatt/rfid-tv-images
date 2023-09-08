@@ -8,6 +8,14 @@ from PIL.ImageTk import PhotoImage
 WINDOW_PADDING = 1 # very narrow
 BUTTON_PADDING = -2 # whatever it takes to totally remove padding
 
+WORK_DELAY_MS = 200 # how many milliseconds to wait to perform next work
+
+
+def perform_work():
+    print('did some work!')
+    root.after(WORK_DELAY_MS, perform_work)
+
+
 # make a full-screen window
 root = Tk()
 root.title("2023-24 Science Fair")
@@ -51,6 +59,9 @@ ttk.Button(
 # center the widgets
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
+
+# schedule outside work
+root.after(WORK_DELAY_MS, perform_work)
 
 # run forever
 root.mainloop()
