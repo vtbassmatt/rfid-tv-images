@@ -1,26 +1,34 @@
-from pirc522 import RFID
+from time import process_time
+import atexit
 
-reader = RFID()
+from RPi import GPIO
+from mfrc522 import SimpleMFRC522
 
-while True:
-    reader.wait_for_tag()
-
-    # request() gives error=True if a tag is NOT present
-    error, tag_type = reader.request()
-    if error:
-        continue
-
-    print("Tag detected")
-    error, uid = reader.anticoll()
-    if error:
-        continue
-
-    print(f"UID: {uid}")
-
-    # as far as I can tell, if we only intend to use the UID, then
-    # there are no more methods we need to call. if we DO intend
-    # to read the card, we have to do some .select_tag() and
-    # .card_auth() and .stop_crypto() dancing. 
+reader = SimpleMFRC522()
 
 # clean up GPIO
-reader.cleanup()
+atexit.register(lambda: GPIO.cleanup())
+
+last_id = None
+
+try:
+    print("Awaiting tag...")
+    last_time = process_time()
+
+    while True:
+        uid, text = reader.read()
+
+        # if we see the same tag again in under 3 seconds, skip it
+        if uid == last_id and process_time() - last_time < 3:
+            continue
+        last_id = uid
+
+        print("Tag detected")
+        # print(f"{uid=} {text=}")
+        print("uid=%s text=%s" % (uid, text))
+
+        print("Awaiting tag...")
+        last_time = process_time()
+
+except KeyboardInterrupt:
+    raise SystemExit()

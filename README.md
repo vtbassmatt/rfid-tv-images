@@ -19,3 +19,17 @@ python3 -m venv .env
 source .env/bin/activate
 pip install -r requirements.txt
 ```
+
+# Setup
+
+I followed https://pimylifeup.com/raspberry-pi-rfid-rc522/ to get things wired and set up.
+Pins were:
+- SDA to pin 24
+- SCK to pin 23
+- MOSI to pin 19
+- MISO to pin 21
+- GND to pin 6
+- RST to pin 22
+- 3.3v to pin 1
+
+In `raspi-config` (launch with `sudo`), under **3 Interfacing Options**, go to **P4 SPI**, enable it, and reboot.

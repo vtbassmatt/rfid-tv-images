@@ -1,4 +1,4 @@
-pi-rc522==2.2.1
+mfrc522==0.0.7
 Pillow==10.0.0
 RPi.GPIO==0.7.1
 spidev==3.6
