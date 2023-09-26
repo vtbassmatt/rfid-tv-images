@@ -32,4 +32,4 @@ Pins were:
 - RST to pin 22
 - 3.3v to pin 1
 
-In `raspi-config` (launch with `sudo`), under **3 Interfacing Options**, go to **P4 SPI**, enable it, and reboot.
+In `raspi-config` (launch with `sudo`), under **3 Interfacing Options**, go to **I4 SPI**, enable it, and reboot.
