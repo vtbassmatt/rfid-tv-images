@@ -1,3 +1,4 @@
+# don't forget to set DISPLAY=:0 before running this!
 import math
 import os
 import random
@@ -91,5 +92,8 @@ root.grid_columnconfigure(0, weight=1)
 # schedule image rotation
 root.after(WORK_DELAY_MS, lambda: maybe_rotate_image(root, btn))
 
-# run forever
-root.mainloop()
+# run forever until Ctrl-C
+try:
+    root.mainloop()
+except KeyboardInterrupt:
+    root.destroy()
