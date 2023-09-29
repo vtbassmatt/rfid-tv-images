@@ -50,6 +50,9 @@ last_id = None
 # same for the last instance of the "feh" program
 feh = None
 
+# clean up feh when the program exits
+atexit.register(lambda: feh.terminate() if feh else None)
+
 # we wrap this in a "try" so we can capture the keyboard event
 # later when we press Ctrl-C to exit
 try:
@@ -91,8 +94,5 @@ try:
 
 # waaaay down here is where we jump when Ctrl-C is detected
 except KeyboardInterrupt:
-    # kill the last instance of feh, if it's still around
-    if feh:
-        feh.terminate()
     # cleanly exit Python, which will exit this infinite loop
     raise SystemExit()
