@@ -4,7 +4,7 @@ import time
 print("pre-feh")
 
 proc = subprocess.Popen(
-    ["/usr/bin/feh", "-F", "-Y", "/home/pi/rfid-tv-images/assets/orrery.jpeg"],
+    ["/usr/bin/feh", "-F", "-Y", "/home/pi/rfid-tv-images/students/334561047487.jpeg"],
 )
 pid = proc.pid
 
