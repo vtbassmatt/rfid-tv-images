@@ -33,3 +33,12 @@ Pins were:
 - 3.3v to pin 1
 
 In `raspi-config` (launch with `sudo`), under **3 Interfacing Options**, go to **I4 SPI**, enable it, and reboot.
+
+Also you probably want your Raspberry Pi not to shut off the screen after 10 minutes.
+Open `/etc/lightdm/lightdm.conf`, find the "SeatsDefault" or "Seats:*" section, and add:
+
+```ini
+xserver-command=X -s 0 -dpms
+```
+
+Then reboot.
